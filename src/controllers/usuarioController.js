@@ -57,3 +57,55 @@ exports.SelectDetail = (req, res, next) => {
 };
 
 //Lembrando que .catch é um filtro de erros que retorna o erro que aconteceu durante o processo dentro do programa
+// AULA 04 - Update e Delete daqui pra baixo
+exports.Update = (req, res, next) => {
+    const id = req.params.id; // duvida desse params e etc.
+    const nome = req.body.nome;
+    const salario = req.body.salario;
+    const dataNascimento = req.body.dataNascimento;
+    const ativo = req.body.ativo;
+
+    Usuario.findByPk(id)
+        .then(usuario => {
+            if (usuario) {
+                usuario.update({
+                    nome: nome,
+                    salario: salario,
+                    dataNascimento: dataNascimento,
+                    ativo: ativo
+                },
+                    {
+                        where: {id: id}
+                    })
+                    .then(() => {
+                        res.status(status.OK).send();
+                    })
+                    .catch(error => next(error));
+                } else {
+                    res.status(status.NOT_FOUND).send();
+                }
+        })
+        .catch(error => next(error));
+};
+
+exports.Delete = (req, res, next) => {
+    const id = req.params.id;
+
+    Usuario.findByPk(id)
+        .then(usuario => {
+            if(usuario) {
+                usuario.destroy({
+                    where: { id: id}
+                })
+
+                    .then(() => {
+                        res.status(status.OK).send();
+                    })
+                    .catch(error => next(error));
+            }
+            else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
+};

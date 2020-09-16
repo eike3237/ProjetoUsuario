@@ -8,4 +8,8 @@ router.post('/usuarios', UsuarioController.Insert); // criando uma URL do tipo "
 router.get('/usuarios', UsuarioController.SelectAll); // de acordo com o endereço define o metodo a ser chamado
 router.get('/usuarios/:id', UsuarioController.SelectDetail); // como pode-se ver esses router são do tipo GET e não do tipo POST, quer só visualizar os dados dentro do BD
 
+// AULA 04 - Update e Delete daqui pra baixo
+router.put('/usuarios/:id', UsuarioController.Update);
+router.delete('/usuarios/:id', UsuarioController.Delete);
+
 module.exports = router;

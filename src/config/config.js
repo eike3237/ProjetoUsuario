@@ -7,7 +7,7 @@ module.exports = {
             name: 'db_usuario',
             dialect: 'mysql',
             user: 'root',
-            password: 'minhasenha' //Tirar a senha na hra de subir pro Git, mas coloca-la ao executa-lo
+            password: 'Eike32374847@' //Tirar a senha na hra de subir pro Git, mas coloca-la ao executa-lo
         }
     },
     production:{
