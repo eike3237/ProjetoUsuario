@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 sequelize.sync({force: false}).then( () => {
     const port = 3003; // Vai responder na porta 3003. posso definir esta porta
-    app.set("port", port);
+    app.set("port", process.env.PORT || port);
     const server = http.createServer(app);
-    server.listen(port);
+    server.listen(process.env.PORT || port);
 });
